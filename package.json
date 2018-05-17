@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bufferutil": "^3.0.0",
+    "discord.js": "github:discordjs/discord.js",
+    "file-type": "^7.6.0",
+    "icy": "^2.1.0",
+    "jsmediatags": "^3.8.1",
+    "libsodium-wrappers": "^0.5.4",
+    "sodium": "^2.0.0",
+    "uws": "^9.14.0",
+    "ws": "^3.1.0",
+    "xmlhttprequest": "^1.8.0",
+    "ytdl-core": "^0.20.2",
+    "zlib-sync": "^0.1.0",
+    "aws-sdk": ""
+  },
+  "devDependencies": {
+    "opusscript": "0.0.6"
+  }
+}
