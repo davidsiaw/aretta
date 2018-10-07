@@ -13,6 +13,8 @@
     "xmlhttprequest": "^1.8.0",
     "ytdl-core": "^0.20.2",
     "zlib-sync": "^0.1.0",
+    "kuroshiro": "1.1.1",
+    "kuroshiro-analyzer-kuromoji": "1.1.0",
     "aws-sdk": ""
   },
   "devDependencies": {
