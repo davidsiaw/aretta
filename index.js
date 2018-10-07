@@ -212,7 +212,7 @@ async function start_html_server(c, connection, logging_channel) {
       "シン":"shin",
       "じん":"jean",
       "ジン":"jean",
-  
+
       "たあ":"tar",
       "たい":"thigh",
       "たう":"tau",
@@ -696,6 +696,41 @@ function handle_vc_message(message, m)
   }
 }
 
+function handle_tl_message(message, m)
+{
+  if (LOG_CHAN)
+  {
+    send(LOG_CHAN, "[MSG]", "from: <@" + m.author.id + ">", message);
+  }
+
+  if (vchandler)
+  {
+
+    var text = message.replace(/tl: ?/, "");
+
+    var translate = new AWS.Translate({region: "us-east-1"});
+    var params = {
+      SourceLanguageCode: 'en', /* required */
+      TargetLanguageCode: 'ja', /* required */
+      Text: text /* required */
+    }
+    translate.translateText(params, function (err, data) {
+      if (err)
+      {
+        console.log(err, err.stack); // an error occurred
+      }
+      else
+      {
+        var reply = "TL: " + text + " → " + data.TranslatedText;
+        m.reply(reply);
+        vchandler(data.TranslatedText, m);
+      }
+    });
+
+  }
+
+}
+
 client.on('message', message => {
 
   //console.log("[MSG]", message.author, message.content);
@@ -718,6 +753,14 @@ client.on('message', message => {
     if (blacklist[message.author.id] === undefined || blacklist[message.author.id] === false)
     {
       handle_vc_message(message.content.replace(id_front, ""), message);
+    }
+  }
+
+  if (message.content.indexOf("tl:") == 0)
+  {
+    if (blacklist[message.author.id] === undefined || blacklist[message.author.id] === false)
+    {
+      handle_tl_message(message.content.replace(id_front, ""), message);
     }
   }
 });
