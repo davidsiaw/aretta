@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.20.1",
     "bufferutil": "^3.0.0",
     "discord.js": "github:discordjs/discord.js",
     "file-type": "^7.6.0",
